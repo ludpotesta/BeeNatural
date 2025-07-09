@@ -1,0 +1,1 @@
+mysqldump -u tuo_utente -p BeeNatural > BeeNatural.sql
