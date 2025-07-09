@@ -1,0 +1,21 @@
+# Compilati
+*.class
+
+# Directory di build Maven
+target/
+.mvn/
+.settings/
+
+# IDE (Eclipse, IntelliJ, NetBeans)
+.idea/
+*.iml
+*.ipr
+*.iws
+*.log
+
+# File temporanei/macOS
+.DS_Store
+
+# Altri
+*.war
+*.zip
