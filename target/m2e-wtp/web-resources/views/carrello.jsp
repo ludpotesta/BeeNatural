@@ -4,66 +4,42 @@
 <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Il tuo Carrello</title>
-    <style>
-        .btn {
-            padding: 8px 15px;
-            margin-top: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
-
-        .errore-quantita {
-            color: red;
-            font-size: 0.9em;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/carrello.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
 <jsp:include page="/views/include/barra-utente.jsp" />
 
-<h1>Il tuo carrello</h1>
+<div class="container mt-4">
+    <h2 class="section-title">Il tuo Carrello</h2>
 
-<%
-    Boolean isGuest = (Boolean) session.getAttribute("isGuest");
-    Carrello carrello = (Carrello) session.getAttribute("carrello");
+    <%
+        Boolean isGuest = (Boolean) session.getAttribute("isGuest");
+        Carrello carrello = (Carrello) session.getAttribute("carrello");
 
-    if (carrello == null || carrello.getProdotti().isEmpty()) {
-%>
-    <p>Il carrello è vuoto.</p>
-<%
-    } else {
-%>
+        if (carrello == null || carrello.getProdotti().isEmpty()) {
+    %>
+        <p>Il carrello è vuoto.</p>
+    <%
+        } else {
+    %>
 
     <% if (isGuest != null && isGuest) { %>
-        <p>Registrati o accedi per completare l'acquisto.</p>
+        <div class="alert alert-warning">Registrati o accedi per completare l'acquisto.</div>
     <% } else { %>
 
-    <!-- FORM per aggiornare le quantità -->
     <form method="post" action="<%= request.getContextPath() %>/AggiornaCarrelloServlet">
-        <table>
+        <table class="table custom-table">
             <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>Prodotto</th>
                     <th>Quantità</th>
                     <th>Prezzo unitario</th>
                     <th>Totale</th>
@@ -82,11 +58,9 @@
                     <td><%= voce.getProdotto().getNome() %></td>
                     <td>
                         <input type="hidden" name="idProdotto" value="<%= id %>"/>
-                        <input type="number" name="quantita" value="<%= quantita %>" min="0" max="<%= disponibile %>"/>
+                        <input type="number" name="quantita" value="<%= quantita %>" min="0" max="<%= disponibile %>" class="form-control"/>
                         <% if (quantita > disponibile) { %>
-                            <div class="errore-quantita">
-                                Disponibili: <%= disponibile %>
-                            </div>
+                            <div class="errore-quantita">Disponibili: <%= disponibile %></div>
                         <% } %>
                     </td>
                     <td>€ <%= String.format("%.2f", prezzo) %></td>
@@ -95,18 +69,19 @@
                 <% } %>
             </tbody>
         </table>
-        <p><strong>Totale: € <%= String.format("%.2f", carrello.getTotale()) %></strong></p>
-        <button type="submit" class="btn">Aggiorna carrello</button>
-    </form>
 
-    <!-- Checkout -->
-    <form method="get" action="<%= request.getContextPath() %>/views/checkout.jsp">
-        <button type="submit" class="btn">Procedi al checkout</button>
+        <p class="totale-carrello"><strong>Totale: € <%= String.format("%.2f", carrello.getTotale()) %></strong></p>
+
+        <div class="azioni-carrello">
+            <button type="submit" class="btn btn-update">Aggiorna carrello</button>
+            <a href="<%= request.getContextPath() %>/views/checkout.jsp" class="btn btn-checkout">Procedi al checkout</a>
+        </div>
     </form>
 
     <% } %>
 
 <% } %>
+</div>
 
 </body>
 </html>

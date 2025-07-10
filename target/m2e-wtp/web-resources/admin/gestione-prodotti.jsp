@@ -3,48 +3,66 @@
 <%@ page import="model.bean.Prodotto" %>
 <jsp:include page="/views/include/barra-utente.jsp" />
 
-<h1>Gestione Prodotti</h1>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Prodotti</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/gestione-prodotti.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="section-title">Gestione Prodotti</h1>
 
-<a href="<%= request.getContextPath() %>/admin/aggiungi-prodotto.jsp"
-   style="display:inline-block; margin-bottom: 15px;">+ Aggiungi Prodotto</a>
+    <a class="add-product-btn" href="<%= request.getContextPath() %>/admin/aggiungi-prodotto.jsp">+ Aggiungi Prodotto</a>
 
-<table border="1" style="border-collapse: collapse; width: 100%;">
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Prezzo</th>
-        <th>Categoria</th>
-        <th>Quantità</th>
-        <th>Azioni</th>
-    </tr>
-    <%
-        Object obj = request.getAttribute("prodotti");
-        List<Prodotto> prodotti = new java.util.ArrayList<>();
-        if (obj instanceof List<?>) {
-            for (Object o : (List<?>) obj) {
-                if (o instanceof Prodotto) {
-                    prodotti.add((Prodotto) o);
+    <div class="table-wrapper">
+        <table class="product-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Prezzo</th>
+                <th>Categoria</th>
+                <th>Quantità</th>
+                <th>Azioni</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                Object obj = request.getAttribute("prodotti");
+                List<Prodotto> prodotti = new java.util.ArrayList<>();
+                if (obj instanceof List<?>) {
+                    for (Object o : (List<?>) obj) {
+                        if (o instanceof Prodotto) {
+                            prodotti.add((Prodotto) o);
+                        }
+                    }
                 }
-            }
-        }
 
-        for (Prodotto p : prodotti) {
-    %>
-    <tr>
-        <td style="padding: 10px;"><%= p.getId() %></td>
-        <td style="padding: 10px;"><%= p.getNome() %></td>
-        <td style="padding: 10px;"><%= p.getPrezzoAttuale() %> €</td>
-        <td style="padding: 10px;"><%= p.getCategoria() %></td>
-        <td style="padding: 10px;"><%= p.getQuantità() %></td>
-        <td style="padding: 10px;">
-            <a href="<%= request.getContextPath() %>/admin/modifica-prodotto.jsp?id=<%= p.getId() %>">Modifica</a> |
-            <form action="<%= request.getContextPath() %>/EliminaProdottoServlet" method="post" style="display:inline;">
-                <input type="hidden" name="id" value="<%= p.getId() %>">
-                <button type="submit" onclick="return confirm('Sei sicuro di voler eliminare questo prodotto?')">Elimina</button>
-            </form>
-        </td>
-    </tr>
-    <%
-        }
-    %>
-</table>
+                for (Prodotto p : prodotti) {
+            %>
+            <tr>
+                <td><%= p.getId() %></td>
+                <td><%= p.getNome() %></td>
+                <td><%= String.format("%.2f", p.getPrezzoAttuale()) %> €</td>
+                <td><%= p.getCategoria() %></td>
+                <td><%= p.getQuantità() %></td>
+                <td class="azioni">
+    				<form action="<%= request.getContextPath() %>/admin/modifica-prodotto.jsp" method="get" style="margin: 0;">
+        				<input type="hidden" name="id" value="<%= p.getId() %>">
+        				<button type="submit" class="modifica-btn">Modifica</button>
+    				</form>
+    				<form action="<%= request.getContextPath() %>/EliminaProdottoServlet" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare questo prodotto?')" style="margin: 0;">
+        				<input type="hidden" name="id" value="<%= p.getId() %>">
+        				<button type="submit" class="elimina-btn">Elimina</button>
+    				</form>
+				</td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

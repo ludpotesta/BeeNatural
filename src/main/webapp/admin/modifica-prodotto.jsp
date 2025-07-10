@@ -14,7 +14,7 @@
     if (idParam != null && !idParam.isEmpty()) {
         try {
             int id = Integer.parseInt(idParam);
-            ProdottoDAO prodottoDAO = new ProdottoDAO(); // ora lancia SQLException
+            ProdottoDAO prodottoDAO = new ProdottoDAO();
             prodotto = prodottoDAO.doRetrieveById(id);
         } catch (NumberFormatException | SQLException e) {
             e.printStackTrace();
@@ -30,47 +30,11 @@
 <jsp:include page="/views/include/barra-utente.jsp" />
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
+    <meta charset="UTF-8">
     <title>Modifica Prodotto</title>
-    <style>
-        .form-container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-control {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modifica-prodotto.css">
 </head>
 <body>
     <div class="form-container">
@@ -120,17 +84,18 @@
                        value="<%= prodotto.getImmagine() != null ? prodotto.getImmagine() : "" %>">
             </div>
 
-            <div class="form-group">
-                <label for="ricaricabile">Prodotto Ricaricabile:</label>
-                <input type="checkbox" id="ricaricabile" name="ricaricabile" 
-                       <%= prodotto.isRicaricabile() ? "checked" : "" %>>
+            <div class="form-group checkbox">
+                <label for="ricaricabile">
+                    <input type="checkbox" id="ricaricabile" name="ricaricabile" 
+                           <%= prodotto.isRicaricabile() ? "checked" : "" %>>
+                    Prodotto Ricaricabile
+                </label>
             </div>
 
-            <div class="form-group">
-    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
-    <a href="${pageContext.request.contextPath}/admin/gestione-prodotti" 
-       class="btn btn-danger">Annulla</a>
-</div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                <a href="${pageContext.request.contextPath}/admin/gestione-prodotti" class="btn btn-danger">Annulla</a>
+            </div>
         </form>
     </div>
 </body>
