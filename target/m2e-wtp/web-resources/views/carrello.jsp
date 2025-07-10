@@ -16,6 +16,24 @@
             color: white;
             border: none;
             border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .errore-quantita {
+            color: red;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -42,7 +60,7 @@
 
     <!-- FORM per aggiornare le quantità -->
     <form method="post" action="<%= request.getContextPath() %>/AggiornaCarrelloServlet">
-        <table border="1">
+        <table>
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -57,13 +75,19 @@
                         int id = voce.getProdotto().getId();
                         double prezzo = voce.getProdotto().getPrezzoAttuale().doubleValue();
                         int quantita = voce.getQuantita();
+                        int disponibile = voce.getProdotto().getQuantità();
                         double totale = prezzo * quantita;
                 %>
                 <tr>
                     <td><%= voce.getProdotto().getNome() %></td>
                     <td>
                         <input type="hidden" name="idProdotto" value="<%= id %>"/>
-                        <input type="number" name="quantita" value="<%= quantita %>" min="0"/>
+                        <input type="number" name="quantita" value="<%= quantita %>" min="0" max="<%= disponibile %>"/>
+                        <% if (quantita > disponibile) { %>
+                            <div class="errore-quantita">
+                                Disponibili: <%= disponibile %>
+                            </div>
+                        <% } %>
                     </td>
                     <td>€ <%= String.format("%.2f", prezzo) %></td>
                     <td>€ <%= String.format("%.2f", totale) %></td>

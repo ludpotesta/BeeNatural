@@ -27,6 +27,13 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
             Prodotto prodotto = prodottoDAO.doRetrieveById(idProdotto);
 
             if (prodotto != null) {
+                if (quantita <= 0 || quantita > prodotto.getQuantità()) {
+                    // ❌ Quantità non valida: reindirizza con messaggio
+                    request.setAttribute("erroreCarrello", "Quantità richiesta non disponibile.");
+                    request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+                    return;
+                }
+
                 HttpSession session = request.getSession();
                 Carrello carrello = (Carrello) session.getAttribute("carrello");
                 if (carrello == null) {
@@ -35,6 +42,7 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
                 }
                 carrello.aggiungiProdotto(prodotto, quantita);
             }
+
             response.sendRedirect(request.getContextPath() + "/catalogo");
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();

@@ -1,0 +1,86 @@
+body {
+    background-color: #fdfaf6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+h2.section-title {
+    margin-bottom: 20px;
+    color: #3e2f20;
+    text-align: center;
+}
+
+.section-subtitle {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #3e2f20;
+}
+
+.user-info p {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.ordine-card {
+    border: 1px solid #e5d9c8;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.ordine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.custom-modal .modal-content {
+    border-radius: 16px;
+    background-color: #fffaf4;
+    border: 1px solid #e5d9c8;
+}
+
+.custom-modal-header {
+    background-color: #fff3e6;
+    border-bottom: 1px solid #e5d9c8;
+}
+
+.custom-modal-body {
+    background-color: #fffaf4;
+}
+
+/* Tabella dentro modal */
+.custom-table {
+    background-color: #fffdf9;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e5d9c8;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.custom-table thead {
+    background-color: #fcf8f3;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px;
+    vertical-align: middle;
+    color: #3e2f20;
+    border-bottom: 1px solid #e5d9c8;
+}
+
+.custom-table tr:last-child td {
+    border-bottom: none;
+}
+
+.custom-table img {
+    border-radius: 10px;
+    margin-top: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
