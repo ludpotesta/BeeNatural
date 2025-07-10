@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <title>Catalogo - BeeNatural</title>
@@ -17,7 +17,7 @@
 
     <c:choose>
         <c:when test="${empty prodotti}">
-            <p>Nessun prodotto disponibile al momento</p>
+            <p style="text-align:center;">Nessun prodotto disponibile al momento</p>
         </c:when>
         <c:otherwise>
             <div class="product-grid">

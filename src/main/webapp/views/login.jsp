@@ -1,61 +1,27 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page session="true" %>
-<%@ page import="model.bean.Carrello" %>
-<%@ page import="java.util.*" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
     <title>Login - BeeNatural</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
-
-<h2>Accedi al tuo account</h2>
-
-<%
-    HttpSession sessione = request.getSession(false);
-    if (sessione != null) {
-        Carrello carrello = (Carrello) sessione.getAttribute("carrello");
-        if (carrello != null && !carrello.getProdotti().isEmpty()) {
-%>
-    <div>
-        <p><strong>Hai prodotti nel carrello!</strong> Accedi per salvarli nel tuo account e completare l'acquisto.</p>
+    <div class="centered">
+        <img src="${pageContext.request.contextPath}/images/loghi/Logo.jpeg" alt="Logo BeeNatural">
+        <div class="login-form">
+            <h1>Accedi al tuo account</h1>
+            <form action="${pageContext.request.contextPath}/login" method="post">
+                <input type="text" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn-accedi">Accedi</button>
+            </form>
+            <div class="link">
+                <a href="${pageContext.request.contextPath}/views/recupera-password.jsp">Password dimenticata?</a><br>
+                Non hai un account?
+                <a href="${pageContext.request.contextPath}/views/register.jsp">Registrati</a><br>
+                Oppure <a href="${pageContext.request.contextPath}/catalogo">continua come ospite</a>
+            </div>
+        </div>
     </div>
-<%
-        }
-    }
-
-    String errore = (String) request.getAttribute("erroreLogin");
-    String successo = (String) request.getAttribute("successo");
-
-    if (errore != null && !errore.isEmpty()) {
-%>
-    <div style="color: red;"><%= errore %></div>
-<%
-    }
-
-    if (successo != null && !successo.isEmpty()) {
-%>
-    <div style="color: green;"><%= successo %></div>
-<%
-    }
-%>
-
-<form method="post" action="${pageContext.request.contextPath}/login">
-    <label for="email">Email:</label>
-    <input type="email" name="email" required><br><br>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" required><br><br>
-
-    <button type="submit">Accedi</button>
-</form>
-
-<p><a href="${pageContext.request.contextPath}/views/recupera-password.jsp">Password dimenticata?</a></p>
-<p>Non hai un account? <a href="${pageContext.request.contextPath}/views/register.jsp">Registrati</a></p>
-<p>Oppure <a href="${pageContext.request.contextPath}/catalogo?guest=true">continua come ospite</a></p>
-
 </body>
 </html>

@@ -1,36 +1,17 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page session="true" %>
-<%@ page import="model.bean.Utente" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>BeeNatural - Home</title>
+    <title>BeeNatural</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
 </head>
 <body>
-    <h1>Benvenuto su BeeNatural!</h1>
-
-    <!-- Mostra il messaggio se presente -->
-    <%
-        String messaggio = (String) request.getAttribute("messaggio");
-        if (messaggio != null) {
-    %>
-        <p style="color: green;"><strong><%= messaggio %></strong></p>
-    <%
-        }
-        Utente utente = (Utente) session.getAttribute("utente");
-        if (utente != null) {
-    %>
-        <p>Ciao, <%= utente.getNome() %>!</p>
-        <a href="<%= request.getContextPath() %>/catalogo">Vai al catalogo</a><br>
-        <a href="<%= request.getContextPath() %>/logout">Logout</a>
-    <%
-        } else {
-    %>
-        <p>Per accedere al catalogo, effettua il <a href="<%= request.getContextPath() %>/views/login.jsp">Login</a>.</p>
-        <p>Non hai un account? <a href="<%= request.getContextPath() %>/views/register.jsp">Registrati</a></p>
-    <%
-        }
-    %>
+    <div class="centered">
+        <img src="${pageContext.request.contextPath}/images/loghi/Logo.jpeg" alt="Logo BeeNatural">
+        <h1>BeeNatural</h1>
+        <form action="${pageContext.request.contextPath}/views/login.jsp">
+    		<button type="submit" class="btn-accedi">Accedi</button>
+		</form>
+    </div>
 </body>
 </html>

@@ -1,0 +1,80 @@
+/* login.css */
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.centered img {
+    width: 100px;
+    height: auto;
+}
+
+.login-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-form h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.btn-accedi {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-accedi:hover {
+    background-color: #333;
+}
+
+.login-form .link {
+    font-size: 13px;
+    color: #555;
+    text-align: center;
+}
+
+.login-form .link a {
+    color: #8d5e2a;
+    text-decoration: none;
+}
+
+.login-form .link a:hover {
+    text-decoration: underline;
+}
