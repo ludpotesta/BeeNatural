@@ -79,7 +79,7 @@
             </div>
 
             <div class="form-group">
-                <label for="immagine">Percorso immagine (es: images/prodotti/nome.jpg):</label>
+                <label for="immagine">Percorso immagine (es: nome.jpg):</label>
                 <input type="text" id="immagine" name="immagine" class="form-control" 
                        value="<%= prodotto.getImmagine() != null ? prodotto.getImmagine() : "" %>">
             </div>

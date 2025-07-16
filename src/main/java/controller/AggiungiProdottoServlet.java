@@ -44,13 +44,19 @@ public class AggiungiProdottoServlet extends HttpServlet {
 
         Part filePart = request.getPart("immagine");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+
+        // Pulizia del nome file in caso l'utente inserisca "images/prodotti/nome.jpg"
+        fileName = fileName.replaceAll(".*[/\\\\]", ""); // rimuove eventuali path
+
         String uploadPath = getServletContext().getRealPath("") + "images" + File.separator + "prodotti";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) uploadDir.mkdirs();
 
         String filePath = uploadPath + File.separator + fileName;
         filePart.write(filePath);
-        String immagine = "images/prodotti/" + fileName;
+
+        // ✅ Salviamo SOLO il nome del file, non il path
+        String immagine = fileName;
 
         Prodotto prodotto = new Prodotto();
         prodotto.setNome(nome);

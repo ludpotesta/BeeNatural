@@ -36,6 +36,6 @@ public class EliminaProdottoServlet extends HttpServlet {
             session.setAttribute("errore", "Si è verificato un errore: " + e.getMessage());
         }
 
-        response.sendRedirect(request.getContextPath() + "/views/admin/gestione-prodotti.jsp");
+        response.sendRedirect(request.getContextPath() + "/admin/gestione-prodotti");
     }
 }
