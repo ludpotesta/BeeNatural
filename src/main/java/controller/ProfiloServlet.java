@@ -25,7 +25,7 @@ public class ProfiloServlet extends HttpServlet {
         }
 
         try {
-            // ✅ Chiamata al metodo statico
+
             List<Ordine> ordini = OrdineDAO.doRetrieveByUtente(utente.getId());
             request.setAttribute("ordiniObj", ordini);
             
@@ -38,7 +38,7 @@ public class ProfiloServlet extends HttpServlet {
             request.setAttribute("errore", "Errore nel recupero degli ordini.");
         }
 
-        // ✅ Nessuna connessione aperta necessaria qui, già gestita nei DAO
+
         request.getRequestDispatcher("/views/profilo.jsp").forward(request, response);
     }
 }

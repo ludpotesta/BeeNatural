@@ -26,7 +26,6 @@ public class RecuperaPasswordServlet extends HttpServlet {
             Utente utente = utenteDAO.doRetrieveByEmail(email);
 
             if (utente != null) {
-                // genera password temporanea
                 String tempPassword = UUID.randomUUID().toString().substring(0, 8);
                 String hashed = PasswordUtil.hashPassword(tempPassword);
 
@@ -36,12 +35,10 @@ public class RecuperaPasswordServlet extends HttpServlet {
                     EmailSender.inviaEmail(email, "Recupero Password",
                             "La tua nuova password temporanea è: " + tempPassword);
 
-                    // ✅ salva utente in sessione per reindirizzarlo
                     HttpSession session = request.getSession();
-                    utente.setPassword(hashed); // aggiorna anche in oggetto
+                    utente.setPassword(hashed); 
                     session.setAttribute("utente", utente);
 
-                    // ✅ reindirizza a modifica-password.jsp con flag recupero
                     response.sendRedirect("views/modifica-password.jsp?recupero=true");
                     return;
                 } else {

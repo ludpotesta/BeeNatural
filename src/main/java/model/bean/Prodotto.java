@@ -13,11 +13,9 @@ public class Prodotto {
     private String categoria;
     private boolean ricaricabile;
 
-    // Costruttore vuoto (necessario per JavaBean)
     public Prodotto() {
     }
 
-    // Getter e Setter
     public int getId() {
         return id;
     }
@@ -82,7 +80,6 @@ public class Prodotto {
         this.ricaricabile = ricaricabile;
     }
 
-    // Metodo toString() utile per debug
     @Override
     public String toString() {
         return "Prodotto{" +

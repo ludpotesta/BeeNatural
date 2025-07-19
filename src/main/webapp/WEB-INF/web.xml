@@ -12,8 +12,8 @@
 
 <filter-mapping>
     <filter-name>AuthFilter</filter-name>
-    <url-pattern>/views/*</url-pattern>  <!-- ✅ solo per le JSP -->
-    <url-pattern>*.jsp</url-pattern>     <!-- ✅ tutte le JSP -->
+    <url-pattern>/views/*</url-pattern>  
+    <url-pattern>*.jsp</url-pattern>    
 </filter-mapping>
 
     <servlet>

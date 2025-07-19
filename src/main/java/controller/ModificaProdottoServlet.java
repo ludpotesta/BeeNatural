@@ -26,7 +26,6 @@ public class ModificaProdottoServlet extends HttpServlet {
             int quantita = Integer.parseInt(request.getParameter("quantita"));
             String immagine = request.getParameter("immagine");
 
-            // Rimuove eventuale prefisso tipo "images/prodotti/"
             immagine = immagine.replaceAll(".*[/\\\\]", "");
             boolean ricaricabile = request.getParameter("ricaricabile") != null;
 

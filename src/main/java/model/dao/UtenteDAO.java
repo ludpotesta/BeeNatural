@@ -8,7 +8,6 @@ import model.utils.PasswordUtil;
 public class UtenteDAO {
 
     public UtenteDAO() {
-        // Costruttore vuoto
     }
 
     public boolean aggiornaPasswordByEmail(String email, String nuovaPasswordHash) {

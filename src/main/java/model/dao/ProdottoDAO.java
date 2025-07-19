@@ -134,7 +134,6 @@ public class ProdottoDAO {
         return prodotti;
     }
 
-    // 🔽 Metodo per verificare disponibilità prodotto
     public boolean verificaDisponibilita(int idProdotto, int quantitaRichiesta) throws SQLException {
         String sql = "SELECT quantità FROM prodotto WHERE id = ?";
         
@@ -146,7 +145,6 @@ public class ProdottoDAO {
         }
     }
 
-    // 🔽 Metodo per scalare la quantità
     public boolean scalaQuantita(int idProdotto, int quantitaDaScalare) throws SQLException {
         String sql = "UPDATE prodotto SET quantità = quantità - ? WHERE id = ? AND quantità >= ?";
         

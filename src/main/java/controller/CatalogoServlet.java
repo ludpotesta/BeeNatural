@@ -1,6 +1,6 @@
 package controller;
 
-import jakarta.servlet.annotation.WebServlet; // <-- aggiungi questa import
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import model.bean.Prodotto;
 import model.dao.ProdottoDAO;
 import model.utils.DBManager;
 
-@WebServlet("/CatalogoServlet")  // <-- aggiungi questa riga
+@WebServlet("/CatalogoServlet")
 public class CatalogoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 

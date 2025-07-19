@@ -17,9 +17,9 @@ import java.sql.Connection;
 
 @WebServlet("/aggiungi-prodotto")
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024,        // 1MB
-    maxFileSize = 1024 * 1024 * 5,          // 5MB
-    maxRequestSize = 1024 * 1024 * 10       // 10MB
+    fileSizeThreshold = 1024 * 1024,        
+    maxFileSize = 1024 * 1024 * 5,          
+    maxRequestSize = 1024 * 1024 * 10       
 )
 public class AggiungiProdottoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -45,8 +45,8 @@ public class AggiungiProdottoServlet extends HttpServlet {
         Part filePart = request.getPart("immagine");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
 
-        // Pulizia del nome file in caso l'utente inserisca "images/prodotti/nome.jpg"
-        fileName = fileName.replaceAll(".*[/\\\\]", ""); // rimuove eventuali path
+        
+        fileName = fileName.replaceAll(".*[/\\\\]", ""); 
 
         String uploadPath = getServletContext().getRealPath("") + "images" + File.separator + "prodotti";
         File uploadDir = new File(uploadPath);
@@ -55,7 +55,7 @@ public class AggiungiProdottoServlet extends HttpServlet {
         String filePath = uploadPath + File.separator + fileName;
         filePart.write(filePath);
 
-        // ✅ Salviamo SOLO il nome del file, non il path
+       
         String immagine = fileName;
 
         Prodotto prodotto = new Prodotto();

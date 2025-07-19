@@ -28,7 +28,7 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
 
             if (prodotto != null) {
                 if (quantita <= 0 || quantita > prodotto.getQuantità()) {
-                    // ❌ Quantità non valida: reindirizza con messaggio
+                    
                     request.setAttribute("erroreCarrello", "Quantità richiesta non disponibile.");
                     request.getRequestDispatcher("/views/error.jsp").forward(request, response);
                     return;

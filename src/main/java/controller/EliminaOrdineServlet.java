@@ -17,7 +17,6 @@ public class EliminaOrdineServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Verifica autenticazione e ruolo admin
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         if (utente == null || !"admin".equalsIgnoreCase(utente.getRuolo())) {
             response.sendRedirect(request.getContextPath() + "/views/error.jsp");
@@ -31,7 +30,6 @@ public class EliminaOrdineServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Redirect alla pagina di gestione ordini aggiornata
         response.sendRedirect(request.getContextPath() + "/admin/gestione-ordini");
     }
 }

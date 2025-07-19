@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 public class DBManager {
 
-	private static final String URL = "jdbc:mysql://localhost:3306/beenatural"; // modifica se serve
-	private static final String USER = "root"; // metti il tuo utente
-	private static final String PASSWORD = "admin"; // metti la tua password
+	private static final String URL = "jdbc:mysql://localhost:3306/beenatural"; 
+	private static final String USER = "root"; 
+	private static final String PASSWORD = "admin";
 
 	static {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver"); // per MySQL 8+
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

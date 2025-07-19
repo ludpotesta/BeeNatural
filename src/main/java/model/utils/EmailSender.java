@@ -7,8 +7,8 @@ import java.util.Properties;
 public class EmailSender {
 
     public static boolean inviaEmail(String to, String oggetto, String testo) {
-        final String mittente = "beenaturalpw@gmail.com"; // Cambia con la tua email
-        final String password = "yurk xuat crfq bfga";        // Cambia con password app o reale
+        final String mittente = "beenaturalpw@gmail.com"; 
+        final String password = "yurk xuat crfq bfga";    
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

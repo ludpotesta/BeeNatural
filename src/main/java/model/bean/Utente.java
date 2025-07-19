@@ -11,11 +11,9 @@ public class Utente {
 	private String telefono;
 	private String ruolo;
 
-	// Costruttore vuoto (richiesto per JavaBean)
 	public Utente() {
 	}
 
-	// Costruttore completo con id
 	public Utente(int id, String nome, String cognome, String email, String password, String indirizzo, String telefono,
 			String ruolo) {
 		this.id = id;
@@ -28,7 +26,6 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 
-	// Costruttore completo senza id (per inserimenti in DB con id autogenerato)
 	public Utente(String nome, String cognome, String email, String password, String indirizzo, String telefono,
 			String ruolo) {
 		this.nome = nome;
@@ -40,7 +37,6 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 
-	// Getter e Setter
 	public int getId() {
 		return id;
 	}
@@ -105,7 +101,6 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 
-	// Metodo toString senza password per sicurezza
 	@Override
 	public String toString() {
 		return "Utente{" + "id=" + id + ", nome='" + nome + '\'' + ", cognome='" + cognome + '\'' + ", email='" + email

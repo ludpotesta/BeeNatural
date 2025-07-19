@@ -76,7 +76,7 @@
             modalPrice.textContent = card.dataset.prezzo;
             modalImg.src = card.dataset.img;
             modalProductId.value = card.dataset.id;
-            modalQuantita.max = card.dataset.quantita; // ✅ limite massimo
+            modalQuantita.max = card.dataset.quantita;
             modalQuantita.value = "1";
             modalOverlay.style.display = 'flex';
         });

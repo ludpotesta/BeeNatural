@@ -37,14 +37,12 @@ public class ModificaPasswordServlet extends HttpServlet {
             return;
         }
 
-        // Controllo se le nuove password coincidono
         if (!nuovaPassword.equals(confermaPassword)) {
             request.setAttribute("errore", "Le nuove password non coincidono");
             request.getRequestDispatcher("/views/modifica-password.jsp").forward(request, response);
             return;
         }
 
-        // Se NON è un recupero, controllo la vecchia password
         if (!recupero) {
             if (!PasswordUtil.checkPassword(vecchiaPassword, utente.getPassword())) {
                 request.setAttribute("errore", "Password attuale errata");
@@ -52,7 +50,7 @@ public class ModificaPasswordServlet extends HttpServlet {
                 return;
             }
         } else {
-            // In caso di recupero, la "vecchia" è in realtà la password temporanea
+
             if (!PasswordUtil.checkPassword(vecchiaPassword, utente.getPassword())) {
                 request.setAttribute("errore", "Password temporanea errata");
                 request.getRequestDispatcher("/views/modifica-password.jsp?recupero=true").forward(request, response);
@@ -63,7 +61,7 @@ public class ModificaPasswordServlet extends HttpServlet {
         boolean esito = UtenteDAO.aggiornaUtenteConPassword(utente, nuovaPassword);
 
         if (esito) {
-            session.invalidate(); // logout obbligatorio
+            session.invalidate(); 
             response.sendRedirect(request.getContextPath() + "/views/login.jsp?msg=Password modificata correttamente");
         } else {
             request.setAttribute("errore", "Errore durante la modifica");

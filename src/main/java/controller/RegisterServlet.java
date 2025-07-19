@@ -31,7 +31,7 @@ public class RegisterServlet extends HttpServlet {
         utente.setPassword(PasswordUtil.hashPassword(password));
         utente.setIndirizzo(indirizzo);
         utente.setTelefono(telefono);
-        utente.setRuolo("cliente"); // 👈 Assegna ruolo cliente
+        utente.setRuolo("cliente"); 
 
         try {
             UtenteDAO utenteDAO = new UtenteDAO();
@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
                 request.getRequestDispatcher("/views/register.jsp").forward(request, response);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // oppure loggalo
+            e.printStackTrace(); 
             request.setAttribute("erroreRegistrazione", "Errore del database");
             request.getRequestDispatcher("/views/register.jsp").forward(request, response);
         }

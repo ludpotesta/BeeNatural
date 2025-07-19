@@ -17,9 +17,8 @@ public class OrdineDAO {
 
 	    try {
 	        con = DBManager.getConnection();
-	        con.setAutoCommit(false); // Inizia transazione
+	        con.setAutoCommit(false); 
 
-	        // 1. Inserisci ordine principale
 	        String sqlOrdine = "INSERT INTO ordine (id_utente, data, totale_pagato, indirizzo_sped, metodo_pagamento, indirizzo_fatturazione) " +
 	                         "VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -40,7 +39,6 @@ public class OrdineDAO {
 	            }
 	        }
 
-	        // 2. Inserisci dettagli ordine e scala quantità
 	        String sqlDettaglio = "INSERT INTO dettaglioordine (id_ordine, id_prodotto, quantità, prezzo_pagato) " +
 	                            "VALUES (?, ?, ?, ?)";
 	        try (PreparedStatement psDettaglio = con.prepareStatement(sqlDettaglio)) {
@@ -66,7 +64,7 @@ public class OrdineDAO {
 	            psDettaglio.executeBatch();
 	        }
 
-	        con.commit(); // Conferma transazione
+	        con.commit(); 
 	        return idOrdine;
 
 	    } catch (SQLException e) {
@@ -135,7 +133,7 @@ public class OrdineDAO {
                     d.setQuantita(rs.getInt("quantità"));
                     d.setPrezzoPagato(rs.getDouble("prezzo_pagato"));
 
-                    ProdottoDAO prodottoDAO = new ProdottoDAO(con);  // ✅ usa connessione esistente
+                    ProdottoDAO prodottoDAO = new ProdottoDAO(con);  
                     try {
                         Prodotto prodotto = prodottoDAO.doRetrieveById(d.getIdProdotto());
                         if (prodotto != null) {

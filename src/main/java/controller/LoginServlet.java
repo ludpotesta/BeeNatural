@@ -28,14 +28,13 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("utente", utente);
 
-                // ✅ Reindirizza alla servlet che carica i prodotti
                 response.sendRedirect(request.getContextPath() + "/CatalogoServlet");
             } else {
                 request.setAttribute("erroreLogin", "Email o password errati");
                 request.getRequestDispatcher("/views/login.jsp").forward(request, response);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // oppure loggalo
+            e.printStackTrace(); 
             request.setAttribute("erroreLogin", "Errore di connessione al database");
             request.getRequestDispatcher("/views/login.jsp").forward(request, response);
         }

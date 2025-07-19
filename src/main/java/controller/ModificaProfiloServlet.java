@@ -13,7 +13,6 @@ import java.sql.SQLException;
 public class ModificaProfiloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Mostra il form di modifica (GET)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,7 +28,6 @@ public class ModificaProfiloServlet extends HttpServlet {
         }
     }
 
-    // Salva le modifiche al profilo (POST)
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
