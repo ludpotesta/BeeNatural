@@ -9,45 +9,51 @@
 <body>
 <div class="centered">
     <img src="${pageContext.request.contextPath}/images/loghi/Logo.jpeg" alt="Logo BeeNatural" width="100">
-    <h2>Crea un nuovo account</h2>
 
-    <form method="post" action="${pageContext.request.contextPath}/register" onsubmit="return validateForm()">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required pattern=".{2,}" title="Minimo 2 caratteri">
-        <div id="nomeError" class="error-msg"></div>
+    <div class="register-form">
+        <h1>Crea un nuovo account</h1>
 
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome" required pattern=".{2,}" title="Minimo 2 caratteri">
-        <div id="cognomeError" class="error-msg"></div>
+        <form method="post" action="${pageContext.request.contextPath}/register" onsubmit="return validateForm()">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required pattern=".{2,}" title="Minimo 2 caratteri">
+            <div id="nomeError" class="error-msg"></div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <div id="emailError" class="error-msg"></div>
+            <label for="cognome">Cognome:</label>
+            <input type="text" id="cognome" name="cognome" required pattern=".{2,}" title="Minimo 2 caratteri">
+            <div id="cognomeError" class="error-msg"></div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required pattern=".{8,}" title="Almeno 8 caratteri">
-        <div id="passwordError" class="error-msg"></div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error-msg"></div>
 
-        <label for="confermaPassword">Conferma Password:</label>
-        <input type="password" id="confermaPassword" name="confermaPassword" required>
-        <div id="confermaPasswordError" class="error-msg"></div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required pattern=".{8,}" title="Almeno 8 caratteri">
+            <div id="passwordError" class="error-msg"></div>
 
-        <label for="indirizzo">Indirizzo:</label>
-        <input type="text" id="indirizzo" name="indirizzo" required>
-        <div id="indirizzoError" class="error-msg"></div>
+            <label for="confermaPassword">Conferma Password:</label>
+            <input type="password" id="confermaPassword" name="confermaPassword" required>
+            <div id="confermaPasswordError" class="error-msg"></div>
 
-        <label for="telefono">Telefono:</label>
-        <input type="tel" id="telefono" name="telefono" pattern="\d{9,15}" title="Inserisci solo numeri (9-15 cifre)" required>
-        <div id="telefonoError" class="error-msg"></div>
+            <label for="indirizzo">Indirizzo:</label>
+            <input type="text" id="indirizzo" name="indirizzo" required>
+            <div id="indirizzoError" class="error-msg"></div>
 
-        <button type="submit">Registrati</button>
-    </form>
+            <label for="telefono">Telefono:</label>
+            <input type="tel" id="telefono" name="telefono" pattern="\d{9,15}" title="Inserisci solo numeri (9-15 cifre)" required>
+            <div id="telefonoError" class="error-msg"></div>
 
-    <div class="messaggio errore">
-        <%= request.getAttribute("errore") != null ? request.getAttribute("errore") : "" %>
-    </div>
-    <div class="messaggio successo">
-        <%= request.getAttribute("successo") != null ? request.getAttribute("successo") : "" %>
+            <button type="submit" class="btn-registrati">Registrati</button>
+        </form>
+
+        <% String errore = (String) request.getAttribute("errore");
+           if (errore != null) { %>
+            <div class="error-msg"><%= errore %></div>
+        <% } %>
+
+        <% String successo = (String) request.getAttribute("successo");
+           if (successo != null) { %>
+            <div class="success-msg"><%= successo %></div>
+        <% } %>
     </div>
 </div>
 

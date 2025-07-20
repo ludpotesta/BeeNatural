@@ -15,6 +15,10 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="btn-accedi">Accedi</button>
             </form>
+            <% String errore = (String) request.getAttribute("erroreLogin");
+   			if (errore != null) { %>
+   			 <div class="errore-login"><%= errore %></div>
+			<% } %>
             <div class="link">
                 <a href="${pageContext.request.contextPath}/views/recupera-password.jsp">Password dimenticata?</a><br>
                 Non hai un account?

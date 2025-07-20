@@ -34,7 +34,7 @@ h1 {
     margin-top: 20px;
     padding: 12px 32px;
     font-size: 16px;
-    background-color: #000;
+    background-color: #6c4e2a;
     color: #fff;
     border: none;
     border-radius: 999px;
@@ -43,5 +43,5 @@ h1 {
 }
 
 .btn-accedi:hover {
-    background-color: #333;
+    background-color: #5e3f1f;
 }

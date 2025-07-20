@@ -84,19 +84,23 @@
         </div>
 
         <div id="carta" class="hidden">
-            <div class="form-group">
-                <label>Numero carta</label>
-                <input type="text" name="numeroCarta" class="form-control" placeholder="0000 0000 0000 0000">
-            </div>
-            <div class="form-group">
-                <label>Scadenza</label>
-                <input type="month" name="scadenzaCarta" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>CVV</label>
-                <input type="text" name="cvvCarta" maxlength="4" class="form-control">
-            </div>
-        </div>
+    		<div class="form-group">
+       			<label>Numero carta</label>
+        			<input type="text" name="numeroCarta" class="form-control" placeholder="0000000000000000"
+               			pattern="\d{16}" maxlength="16" required
+               			title="Inserisci 16 cifre numeriche">
+    		</div>
+    		<div class="form-group">
+        		<label>Scadenza</label>
+        			<input type="month" name="scadenzaCarta" class="form-control" required>
+    		</div>
+    		<div class="form-group">
+        		<label>CVV</label>
+        			<input type="text" name="cvvCarta" class="form-control"
+               			pattern="\d{3,4}" maxlength="4" required
+               			title="Inserisci 3 o 4 cifre numeriche">
+    		</div>
+		</div>
 
         <div id="paypal" class="hidden">
             <div class="form-group">
